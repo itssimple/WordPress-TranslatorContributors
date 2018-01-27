@@ -3,6 +3,7 @@ header("Content-type: application/json;");
 $plugin_slug = htmlspecialchars($_GET['slug']);
 if(empty($plugin_slug))
         die('{ "error": "No slug in query string" }');
+if(stristr($plugin_slug, ".") === FALSE) {
 if(file_exists("wp-cache/" . $plugin_slug . ".cached")
         && filemtime("wp-cache/" . $plugin_slug . ".cached") > time() - 3600)
 {
@@ -58,3 +59,6 @@ for($i = 0; $i < count($glot_matches[0]); $i++)
 }
 
 echo json_encode($plugin_info);
+} else {
+        echo '{ "error": "I\'m sorry Dave, I cannot let you do that." }';
+}
