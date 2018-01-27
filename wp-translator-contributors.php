@@ -1,6 +1,6 @@
 <?php
 header("Content-type: application/json;");
-$plugin_slug = htmlspecialchars($_GET['slug']);
+$plugin_slug = strtolower( strip_tags( htmlspecialchars( $_GET['slug'] ) ) );;
 if(empty($plugin_slug))
         die('{ "error": "No slug in query string" }');
 if(stristr($plugin_slug, ".") === FALSE) {
